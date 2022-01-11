@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import { watchData } from "./data/watchData"
+import "./App.css"
+import StartPage from "./components/StartPage"
+import MeetupDetails from "./components/MeetupDetails"
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <header className="App-header">&#9201; Watch Meetups &#9201;</header>
+        <section className="main-content">
+          <Routes>
+            <Route path="/" element={<StartPage meetups={watchData} />}></Route>
+
+            <Route
+              path="/meetup/:id"
+              element={
+                <MeetupDetails meetups={watchData} myName="" myEmail="" />
+              }
+            ></Route>
+          </Routes>
+        </section>
+      </Router>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
