@@ -1,30 +1,35 @@
-import { useState } from "react"
-import { Meetups } from "../../models/meetups"
+// import { useState } from "react"
+// import { Meetups } from "../../models/meetups"
 
 interface Props {
-  addMeetup: (meetups: Meetups) => void
+  // addMeetup: (meetups: Meetups) => void
+  onClick: () => void
+  title: string
+  setTitle: (title: string) => void
+  description: string
+  setDescription: (description: string) => void
+  date: string
+  setDate: (date: string) => void
+  time: string
+  setTime: (time: string) => void
+  location: string
+  setLocation: (location: string) => void
 }
 
-const Form = ({ addMeetup }: Props) => {
-  const [title, setTitle] = useState("")
-  const [description, setDescription] = useState("")
-  const [date, setDate] = useState("")
-  const [time, setTime] = useState("")
-  const [location, setLocation] = useState("")
-
-  function handleAddClick() {
-    const m: Meetups = {
-      id: 20,
-      title: title,
-      description: description,
-      date: date,
-      time: time,
-      location: location
-    }
-    addMeetup(m)
-    // console.log(m)
-  }
-
+const Form = ({
+  // addMeetup,
+  onClick,
+  title,
+  setTitle,
+  description,
+  setDescription,
+  date,
+  setDate,
+  time,
+  setTime,
+  location,
+  setLocation
+}: Props) => {
   return (
     <>
       <div className="new-meetup-form">
@@ -68,7 +73,7 @@ const Form = ({ addMeetup }: Props) => {
             onChange={(event) => setLocation(event.target.value)}
           />
         </label>
-        <button onClick={handleAddClick}>Add new meetup</button>
+        <button onClick={onClick}>Add new meetup</button>
       </div>
     </>
   )

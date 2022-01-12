@@ -25,7 +25,7 @@ function SignUpMeetup({
   const onSubmit = handleSubmit((data) => {
     alert(JSON.stringify(data))
   })
-  console.log("Email error", errors.Email)
+
   return (
     <>
       <form onSubmit={onSubmit}>
@@ -34,9 +34,9 @@ function SignUpMeetup({
           <input
             {...register("Name", {
               required: true,
-              min: 4,
+
               pattern: {
-                value: /^[^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{4}$/i,
+                value: /^[^0-9_!¡?÷?¿/\\+=@#$%&*(){}|~<>;:[\]]{4}$/i,
                 message: "Name is invalide "
               }
             })}

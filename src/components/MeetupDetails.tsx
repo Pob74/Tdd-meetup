@@ -15,7 +15,7 @@ function MeetupDetails({ meetups }: Props) {
   const { id } = useParams()
 
   const [meetup, setMeetup] = useState({
-    id: 0,
+    id: "",
     title: "",
     description: "",
     location: "",

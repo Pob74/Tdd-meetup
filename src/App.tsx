@@ -11,7 +11,19 @@ function App() {
         <header className="App-header">&#9201; Watch Meetups &#9201;</header>
         <section className="main-content">
           <Routes>
-            <Route path="/" element={<StartPage meetups={watchData} />}></Route>
+            <Route
+              path="/"
+              element={
+                <StartPage
+                  meetups={watchData}
+                  title=""
+                  description=""
+                  date=""
+                  time=""
+                  location=""
+                />
+              }
+            ></Route>
 
             <Route
               path="/meetup/:id"
