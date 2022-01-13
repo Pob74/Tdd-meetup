@@ -4,7 +4,7 @@ import MeetupDetails from "../components/MeetupDetails"
 
 const meetupData = [
   {
-    id: 1,
+    id: "1",
     title: "Rolex talks",
     description: " lets talk about Rolex",
     date: "2021-01-22",

@@ -3,7 +3,7 @@ import MeetupDetails from "../components/MeetupDetails"
 
 const meetupsData = [
   {
-    id: 1,
+    id: "1",
     title: "Rolex talks",
     description: "lets talk about rolex",
     date: "2022-01-22",

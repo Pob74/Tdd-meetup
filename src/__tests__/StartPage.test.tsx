@@ -1,6 +1,6 @@
 import StartPage from "../components/StartPage"
 import { render, screen } from "@testing-library/react"
-import { shallow } from "enzyme"
+import { shallow, mount } from "enzyme"
 import { BrowserRouter } from "react-router-dom"
 
 const meetupData = [
@@ -29,6 +29,32 @@ describe("Meetup tests", () => {
       </BrowserRouter>
     )
   })
+  it("shows correct meetup when typing in search field", () => {
+    const wrapper = mount(
+      <BrowserRouter>
+        <StartPage
+          meetups={meetupData}
+          title=""
+          description=""
+          date=""
+          time=""
+          location=""
+        />
+      </BrowserRouter>
+    )
+
+    const searchString = "Rolex"
+    const input = wrapper.find(".search-input")
+    input.simulate("change", { target: { value: searchString } })
+
+    const cards = wrapper.find('div[data-test="result-meetup"]')
+    const titles = cards.find("h3")
+    expect(titles.length).toBe(1)
+    titles.forEach((title) => {
+      const actualTitle = title.text()
+      expect(actualTitle.toLowerCase()).toMatch(searchString.toLowerCase())
+    })
+  })
 
   test("Renders a h3 element for meetup title", () => {
     const wrapper = shallow(
@@ -42,7 +68,7 @@ describe("Meetup tests", () => {
       />
     )
 
-    expect(wrapper.find('h3[data-test="meetup-title"]').length).toBe(1)
+    expect(wrapper.find('h3[data-test="meetup-title"]').length).toBe(3)
   })
   test("Renders a p element for meetup description", () => {
     const wrapper = shallow(
@@ -56,7 +82,7 @@ describe("Meetup tests", () => {
       />
     )
 
-    expect(wrapper.find('p[data-test="meetup-description"]').length).toBe(1)
+    expect(wrapper.find('p[data-test="meetup-description"]').length).toBe(3)
   })
   test("Renders a p element for meetup location", () => {
     const wrapper = shallow(
@@ -70,7 +96,7 @@ describe("Meetup tests", () => {
       />
     )
 
-    expect(wrapper.find('p[data-test="meetup-location"]').length).toBe(1)
+    expect(wrapper.find('p[data-test="meetup-location"]').length).toBe(3)
   })
   test("Renders a p element for meetup time and date", () => {
     const wrapper = shallow(
@@ -84,7 +110,7 @@ describe("Meetup tests", () => {
       />
     )
 
-    expect(wrapper.find('p[data-test="meetup-time-date"]').length).toBe(1)
+    expect(wrapper.find('p[data-test="meetup-time-date"]').length).toBe(3)
   })
   test('Check if link "Show more" exists', () => {
     render(
@@ -100,21 +126,33 @@ describe("Meetup tests", () => {
       </BrowserRouter>
     )
 
-    const stringValue = screen.getByText(/Show more/i)
-    expect(stringValue).toBeInTheDocument()
+    setTimeout(() => {
+      const stringValue = screen.getByText(/Show more/i)
+      expect(stringValue).toBeInTheDocument()
+    }, 1000)
   })
 
-  //   test('Check if link "Show more" is a <Link> element', () => {
-  //     const wrapper = shallow(
-  //       <BrowserRouter>
-  //         <StartPage meetups={meetupData} />
-  //       </BrowserRouter>
-  //     )
+  test('Check if link "Show more" is a <Link> element', () => {
+    const wrapper = shallow(
+      <BrowserRouter>
+        <StartPage
+          meetups={meetupData}
+          title=""
+          description=""
+          date=""
+          time=""
+          location=""
+        />
+      </BrowserRouter>
+    )
+    setTimeout(() => {
+      expect(wrapper.find('Link[data-test="Show-MeetupDetails"]').length).toBe(
+        1
+      )
+    }, 1000)
+  })
 
-  //     expect(wrapper.find('Link[data-test="show-MeetupDetails"]').length).toBe(1)
-  //   })
-
-  test('Should render the meetup title "Premier league"', () => {
+  test('Should render the meetup title "Rolex talks"', () => {
     render(
       <BrowserRouter>
         <StartPage

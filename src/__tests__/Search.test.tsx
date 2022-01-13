@@ -4,7 +4,7 @@ import StartPage from "../components/StartPage"
 
 const meetupData = [
   {
-    id: 1,
+    id: "1",
     title: "Rolex talks",
     description: "lets talk about rolex",
     date: "2021-01-22",
@@ -17,7 +17,14 @@ describe("tests for search on meetups", () => {
   test('Search "Rolex", should render 1 meetup', () => {
     const wrapper = mount(
       <BrowserRouter>
-        <StartPage meetups={meetupData} />
+        <StartPage
+          meetups={meetupData}
+          title=""
+          description=""
+          date=""
+          time=""
+          location=""
+        />
       </BrowserRouter>
     )
     const searchText = "Rolex"
@@ -29,7 +36,14 @@ describe("tests for search on meetups", () => {
   test('Search "Yoga", should render 0 meetup', () => {
     const wrapper = mount(
       <BrowserRouter>
-        <StartPage meetups={meetupData} />
+        <StartPage
+          meetups={meetupData}
+          title=""
+          description=""
+          date=""
+          time=""
+          location=""
+        />
       </BrowserRouter>
     )
     const searchText = "Ap"
