@@ -8,7 +8,11 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <header className="App-header">&#9201; Watch Meetups &#9201;</header>
+        <>
+          <header className="App-header">
+            <h1>&#9201; Watch Meetups &#9201;</h1>
+          </header>
+        </>
         <section className="main-content">
           <Routes>
             <Route

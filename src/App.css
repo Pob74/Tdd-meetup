@@ -4,10 +4,22 @@
 body {
   background-color: #eddcd9;
 }
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+header {
+  background-image: url(/public/rolex1.jpg);
+  background-size: contain;
+  background-position-x: 50px;
+  background-repeat: no-repeat;
+  position: relative;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -32,10 +44,36 @@ a {
   text-decoration: none;
   color: #4c69e9;
 }
-
+span {
+  font-weight: bold;
+  margin-right: 5px;
+}
+input .comment-input {
+  margin-bottom: 2em;
+}
 button {
-  background-color: #e99f4c;
+  background-color: #8a7b82;
   border-radius: 8px;
+  color: white;
+
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+.add-comment-btn {
+  align-self: center;
+}
+.comment-input {
+  width: 20vw;
+}
+.search-input {
+  width: 20vw;
+  align-self: center;
+  text-align: center;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+.attending {
+  color: blue;
 }
 
 @keyframes App-logo-spin {

@@ -1,6 +1,7 @@
 import Form from "../components/NewMeetup/Form"
+import { BrowserRouter } from "react-router-dom"
 import { render } from "@testing-library/react"
-import { shallow } from "enzyme"
+import { shallow, mount } from "enzyme"
 import { Meetups } from "../models/meetups"
 
 describe("Form component", () => {
@@ -80,6 +81,133 @@ describe("Form component", () => {
       expect(values.time).toBe(testMeetup.time)
       expect(values.location).toBe(testMeetup.location)
     }, 1000)
+  })
+
+  test("should render a input field for type in a title", () => {
+    const wrapper = mount(
+      <BrowserRouter>
+        <Form
+          onClick={() => {}}
+          title=""
+          setTitle={() => {}}
+          description=""
+          setDescription={() => {}}
+          date=""
+          setDate={() => {}}
+          time=""
+          setTime={() => {}}
+          location=""
+          setLocation={() => {}}
+        />
+      </BrowserRouter>
+    )
+
+    expect(wrapper.find('[test-data="title"] input').length).toBe(1)
+  })
+  test("should render a input field for type in a description", () => {
+    const wrapper = mount(
+      <BrowserRouter>
+        <Form
+          onClick={() => {}}
+          title=""
+          setTitle={() => {}}
+          description=""
+          setDescription={() => {}}
+          date=""
+          setDate={() => {}}
+          time=""
+          setTime={() => {}}
+          location=""
+          setLocation={() => {}}
+        />
+      </BrowserRouter>
+    )
+
+    expect(wrapper.find('[test-data="description"] input').length).toBe(1)
+  })
+  test("should render a input field for type in a date", () => {
+    const wrapper = mount(
+      <BrowserRouter>
+        <Form
+          onClick={() => {}}
+          title=""
+          setTitle={() => {}}
+          description=""
+          setDescription={() => {}}
+          date=""
+          setDate={() => {}}
+          time=""
+          setTime={() => {}}
+          location=""
+          setLocation={() => {}}
+        />
+      </BrowserRouter>
+    )
+
+    expect(wrapper.find('[test-data="date"] input').length).toBe(1)
+  })
+  test("should render a input field for type in a time", () => {
+    const wrapper = mount(
+      <BrowserRouter>
+        <Form
+          onClick={() => {}}
+          title=""
+          setTitle={() => {}}
+          description=""
+          setDescription={() => {}}
+          date=""
+          setDate={() => {}}
+          time=""
+          setTime={() => {}}
+          location=""
+          setLocation={() => {}}
+        />
+      </BrowserRouter>
+    )
+
+    expect(wrapper.find('[test-data="time"] input').length).toBe(1)
+  })
+  test("should render a input field for type in a location", () => {
+    const wrapper = mount(
+      <BrowserRouter>
+        <Form
+          onClick={() => {}}
+          title=""
+          setTitle={() => {}}
+          description=""
+          setDescription={() => {}}
+          date=""
+          setDate={() => {}}
+          time=""
+          setTime={() => {}}
+          location=""
+          setLocation={() => {}}
+        />
+      </BrowserRouter>
+    )
+
+    expect(wrapper.find('[test-data="location"] input').length).toBe(1)
+  })
+  test("should render a button to add a new meetup", () => {
+    const wrapper = mount(
+      <BrowserRouter>
+        <Form
+          onClick={() => {}}
+          title=""
+          setTitle={() => {}}
+          description=""
+          setDescription={() => {}}
+          date=""
+          setDate={() => {}}
+          time=""
+          setTime={() => {}}
+          location=""
+          setLocation={() => {}}
+        />
+      </BrowserRouter>
+    )
+
+    expect(wrapper.find('button[test-data="new-meetup-button"]').length).toBe(1)
   })
 })
 

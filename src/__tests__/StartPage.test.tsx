@@ -68,7 +68,9 @@ describe("Meetup tests", () => {
       />
     )
 
-    expect(wrapper.find('h3[data-test="meetup-title"]').length).toBe(3)
+    expect(
+      wrapper.find('h3[data-test="meetup-title"]').length
+    ).not.toBeLessThan(1)
   })
   test("Renders a p element for meetup description", () => {
     const wrapper = shallow(
@@ -82,7 +84,9 @@ describe("Meetup tests", () => {
       />
     )
 
-    expect(wrapper.find('p[data-test="meetup-description"]').length).toBe(3)
+    expect(
+      wrapper.find('p[data-test="meetup-description"]').length
+    ).not.toBeLessThan(1)
   })
   test("Renders a p element for meetup location", () => {
     const wrapper = shallow(
@@ -96,7 +100,9 @@ describe("Meetup tests", () => {
       />
     )
 
-    expect(wrapper.find('p[data-test="meetup-location"]').length).toBe(3)
+    expect(
+      wrapper.find('p[data-test="meetup-location"]').length
+    ).not.toBeLessThan(1)
   })
   test("Renders a p element for meetup time and date", () => {
     const wrapper = shallow(
@@ -110,7 +116,9 @@ describe("Meetup tests", () => {
       />
     )
 
-    expect(wrapper.find('p[data-test="meetup-time-date"]').length).toBe(3)
+    expect(
+      wrapper.find('p[data-test="meetup-time-date"]').length
+    ).not.toBeLessThan(1)
   })
   test('Check if link "Show more" exists', () => {
     render(

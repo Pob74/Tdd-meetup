@@ -22,9 +22,7 @@ function SignUpMeetup({
     formState: { errors }
   } = useForm<ISignupForm>()
 
-  const onSubmit = handleSubmit((data) => {
-    alert(JSON.stringify(data))
-  })
+  const onSubmit = handleSubmit((data) => {})
 
   return (
     <>

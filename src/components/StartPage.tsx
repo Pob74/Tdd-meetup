@@ -4,7 +4,6 @@ import Search from "./Search"
 import { Link } from "react-router-dom"
 import Form from "./NewMeetup/Form"
 import { watchData } from "../data/watchData"
-import React from "react"
 import nextId from "react-id-generator"
 
 interface Props {
@@ -24,38 +23,28 @@ function StartPage({ meetups }: Props) {
   const [time, setTime] = useState("")
   const [location, setLocation] = useState("")
 
-  // function handleAddClick() {
-  //   const m: Meetups = {
-  //     id: 20,
-  //     title: title,
-  //     description: description,
-  //     date: date,
-  //     time: time,
-  //     location: location
-  //   }
-  //   addMeetup(m)
-  //   console.log("m constant visible", m)
-  // }
-
   const [searchText, setSearchText] = useState("")
   const [meetup, setMeetup] = useState<Meetups[]>(watchData)
 
-  const addMeetup = (): void =>
-    // function addMeetup(): void
-    {
-      const m = {
-        id: myid,
-        title: title,
-        description: description,
-        date: date,
-        time: time,
-        location: location
-      }
-      setMeetup([...meetup, m])
-      console.log("newMeetup:", m)
-      console.log("addMeetup function why it doesn't work")
-      console.log("Meetups : ", meetup)
+  const addMeetup = (): void => {
+    const m = {
+      id: myid,
+      title: title,
+      description: description,
+      date: date,
+      time: time,
+      location: location
     }
+    if (
+      title !== "" &&
+      description !== "" &&
+      date !== "" &&
+      time !== "" &&
+      location !== ""
+    ) {
+      setMeetup([...meetup, m])
+    }
+  }
 
   const filteredMeetups = meetup.filter((meetup) =>
     meetup.title.match(new RegExp(searchText, "i"))
@@ -65,13 +54,10 @@ function StartPage({ meetups }: Props) {
     a.date.localeCompare(b.date)
   )
 
-  // console.log("sorterat: ", sortedMeetups)
-
   return (
     <>
       <Search searchValue={searchText} setSearchValue={setSearchText} />
       <Form
-        // addMeetup={addMeetup}
         onClick={addMeetup}
         title={title}
         setTitle={setTitle}
@@ -89,11 +75,14 @@ function StartPage({ meetups }: Props) {
           <section>
             <h3 data-test="meetup-title">Title: {meetups.title}</h3>
             <p data-test="meetup-description">
-              Description: {meetups.description}
+              <span>Description:</span> {meetups.description}
             </p>
-            <p data-test="meetup-location">Location: {meetups.location}</p>
+            <p data-test="meetup-location">
+              <span>Location:</span> {meetups.location}
+            </p>
             <p data-test="meetup-time-date">
-              Time:{meetups.time} Date: {meetups.date}
+              <span> Time:</span>
+              {meetups.time} Date: {meetups.date}
             </p>
             <Link data-test="Show-MeetupDetails" to={`/meetup/${meetups.id}`}>
               Show more

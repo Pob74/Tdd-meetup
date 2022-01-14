@@ -51,6 +51,8 @@ function MeetupDetails({ meetups }: Props) {
     setComment("")
   }
 
+  const [attending, setAttending] = useState(false)
+
   const [showSignup, setShowSignup] = useState(false)
 
   const [signupName, setSignupName] = useState("")
@@ -62,7 +64,8 @@ function MeetupDetails({ meetups }: Props) {
   const hideSignUp = (): void => {
     if (signupName.match(/[a-z0-9]/) && signupEmail.match(/[@]/)) {
       setShowSignup(false)
-      alert("You are attending the event")
+      // alert("You are attending the event")
+      setAttending(true)
       setSignupName("")
       setSignupEmail("")
       return
@@ -73,12 +76,18 @@ function MeetupDetails({ meetups }: Props) {
     <>
       <section>
         <h3 data-test="meetup-title" className="meetup-data">
-          Title: {meetup.title}
+          <span> Title:</span>
+          {meetup.title}
         </h3>
-        <p>Description: {meetup.description}</p>
-        <p>Location: {meetup.location}</p>
         <p>
-          Time:{meetup.time} Date: {meetup.date}
+          <span>Description:</span> {meetup.description}
+        </p>
+        <p>
+          <span>Location:</span> {meetup.location}
+        </p>
+        <p>
+          <span> Time:</span>
+          {meetup.time} Date: {meetup.date}
         </p>
         {showSignup ? (
           <SignUpMeetup
@@ -89,6 +98,9 @@ function MeetupDetails({ meetups }: Props) {
             setMyEmail={setSignupEmail}
           />
         ) : null}
+        {attending === true ? (
+          <p className="attending">You are attending this meetup &#9989;</p>
+        ) : null}
         {!showSignup ? (
           <button data-test="sign-up-btn" onClick={signUp}>
             Sign up for event
@@ -96,19 +108,32 @@ function MeetupDetails({ meetups }: Props) {
         ) : null}
       </section>
       <section>
-        Add comment or question:
-        <textarea
-          data-test="textfield"
-          value={comment}
-          onChange={(event) => setComment(event.target.value)}
-        ></textarea>
-        <button data-test="addCommentBtn" onClick={addComment}>
-          Add comment
-        </button>
+        <div className="add-comment-input">
+          {/* Add comment or question: */}
+          <textarea
+            className="comment-input"
+            data-test="textfield"
+            value={comment}
+            onChange={(event) => setComment(event.target.value)}
+          ></textarea>
+        </div>
+        <div className="add-comment-btn">
+          <button
+            className="add-comment-btn"
+            data-test="addCommentBtn"
+            onClick={addComment}
+          >
+            Add comment
+          </button>
+        </div>
       </section>
       <div className="commentsArea">
         {newComment.map((comment: IComment, key: number) => {
-          return <MeetupComments key={key} comment={comment} />
+          return (
+            <div className="comments">
+              <MeetupComments key={key} comment={comment} />
+            </div>
+          )
         })}
       </div>
     </>
