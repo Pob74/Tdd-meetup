@@ -28,10 +28,10 @@ describe("tests for search on meetups", () => {
       </BrowserRouter>
     )
     const searchText = "Rolex"
-    const searchField = wrapper.find('[data-test="search-meetup"]')
+    const searchField = wrapper.find('[test-data="search-meetup"]')
     searchField.simulate("change", { target: { value: searchText } })
 
-    expect(wrapper.find('[data-test="result-meetup"]').length).toBe(1)
+    expect(wrapper.find('[test-data="result-meetup"]').length).toBe(1)
   })
   test('Search "Yoga", should render 0 meetup', () => {
     const wrapper = mount(
@@ -47,10 +47,10 @@ describe("tests for search on meetups", () => {
       </BrowserRouter>
     )
     const searchText = "Ap"
-    const searchField = wrapper.find('[data-test="search-meetup"]')
+    const searchField = wrapper.find('[test-data="search-meetup"]')
 
     searchField.simulate("change", { target: { value: searchText } })
 
-    expect(wrapper.find('[data-test="result-meetup"]').length).toBe(0)
+    expect(wrapper.find('[test-data="result-meetup"]').length).toBe(0)
   })
 })

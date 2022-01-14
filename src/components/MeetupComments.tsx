@@ -6,14 +6,17 @@ interface Props {
 function MeetupComments({ comment }: Props) {
   return (
     <>
-      <div>
+      <div className="comments">
         <p>
+          <span>Posted:</span>
+          {comment.timeAndDate}
           <span>Comment:</span>
           {comment.message}
         </p>
         <p>
-          <span>Rating:</span>
+          <span>Your rating:</span>
           {comment.newRating}
+          &#11088;
         </p>
       </div>
     </>

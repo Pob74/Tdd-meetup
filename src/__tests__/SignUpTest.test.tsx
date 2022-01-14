@@ -18,12 +18,12 @@ describe("Tests for signing up on meetups", () => {
       <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
     )
 
-    const btn = wrapper.find('button[data-test="sign-up-btn"]')
+    const btn = wrapper.find('button[test-data="sign-up-btn"]')
 
     btn.simulate("click")
 
     setTimeout(() => {
-      expect(wrapper.find('[data-test="attendMeetupForm"]').length).toBe(1)
+      expect(wrapper.find('[test-data="attendMeetupForm"]').length).toBe(1)
     }, 1000)
   })
   test("should render a input field for type in your name", () => {
@@ -31,12 +31,12 @@ describe("Tests for signing up on meetups", () => {
       <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
     )
 
-    const btn = wrapper.find('button[data-test="sign-up-btn"]')
+    const btn = wrapper.find('button[test-data="sign-up-btn"]')
 
     btn.simulate("click")
 
     setTimeout(() => {
-      expect(wrapper.find('input[data-test="inputName"]').length).toBe(1)
+      expect(wrapper.find('input[test-data="inputName"]').length).toBe(1)
     }, 1000)
   })
   test("should render a input field for type in your email", () => {
@@ -44,12 +44,12 @@ describe("Tests for signing up on meetups", () => {
       <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
     )
 
-    const btn = wrapper.find('button[data-test="sign-up-btn"]')
+    const btn = wrapper.find('button[test-data="sign-up-btn"]')
 
     btn.simulate("click")
 
     setTimeout(() => {
-      expect(wrapper.find('input[data-test="inputEmail"]').length).toBe(1)
+      expect(wrapper.find('input[test-data="inputEmail"]').length).toBe(1)
     }, 1000)
   })
   test("Should render commit button", () => {
@@ -57,12 +57,12 @@ describe("Tests for signing up on meetups", () => {
       <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
     )
 
-    const btn = wrapper.find('button[data-test="sign-up-btn"]')
+    const btn = wrapper.find('button[test-data="sign-up-btn"]')
 
     btn.simulate("click")
 
     setTimeout(() => {
-      expect(wrapper.find('button[data-test="commitBtn"]').length).toBe(1)
+      expect(wrapper.find('button[test-data="commitBtn"]').length).toBe(1)
     }, 1000)
   })
 
@@ -74,17 +74,17 @@ describe("Tests for signing up on meetups", () => {
       <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
     )
 
-    const btn = wrapper.find('button[data-test="sign-up-btn"]')
+    const btn = wrapper.find('button[test-data="sign-up-btn"]')
 
     btn.simulate("click")
 
-    const inputEmail = wrapper.find('[data-test="inputEmail"]')
+    const inputEmail = wrapper.find('[test-data="inputEmail"]')
     setTimeout(() => {
       expect(inputEmail.length).toBe(1)
 
       inputEmail.simulate("change", { target: { value: wrongEmail } })
 
-      wrapper.find('[data-test="commitBtn"]').simulate("click")
+      wrapper.find('[test-data="commitBtn"]').simulate("click")
 
       expect(wrapper.text().includes(expectedText)).toBe(true)
     }, 1000)
@@ -98,16 +98,16 @@ describe("Tests for signing up on meetups", () => {
       <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
     )
 
-    const btn = wrapper.find('button[data-test="sign-up-btn"]')
+    const btn = wrapper.find('button[test-data="sign-up-btn"]')
 
     btn.simulate("click")
-    const inputName = wrapper.find('[data-test="inputName"]')
+    const inputName = wrapper.find('[test-data="inputName"]')
     setTimeout(() => {
       expect(inputName.length).toBe(1)
 
       inputName.simulate("change", { target: { value: wrongName } })
 
-      wrapper.find('[data-test="commitBtn"]').simulate("click")
+      wrapper.find('[test-data="commitBtn"]').simulate("click")
 
       expect(wrapper.text().includes(expectedText)).toBe(true)
     }, 1000)
@@ -122,12 +122,12 @@ describe("Tests for signing up on meetups", () => {
       <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
     )
 
-    const btn = wrapper.find('button[data-test="sign-up-btn"]')
+    const btn = wrapper.find('button[test-data="sign-up-btn"]')
 
     btn.simulate("click")
 
-    const inputEmail = wrapper.find('[data-test="inputEmail"]')
-    const inputName = wrapper.find('[data-test="inputName"]')
+    const inputEmail = wrapper.find('[test-data="inputEmail"]')
+    const inputName = wrapper.find('[test-data="inputName"]')
     setTimeout(() => {
       expect(inputEmail.length).toBe(1)
       expect(inputName.length).toBe(1)
@@ -135,7 +135,7 @@ describe("Tests for signing up on meetups", () => {
       inputEmail.simulate("change", { target: { value: correctEmail } })
       inputName.simulate("change", { target: { value: correctName } })
 
-      wrapper.find('[data-test="commitBtn"]').simulate("click")
+      wrapper.find('[test-data="commitBtn"]').simulate("click")
 
       expect(wrapper.text().includes(expectedText)).toBe(true)
     }, 1000)

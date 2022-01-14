@@ -1,5 +1,6 @@
 export interface IComment {
   message: string
-newRating: number
+  newRating: number
+  timeAndDate:string
  
 }

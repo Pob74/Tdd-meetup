@@ -41,6 +41,17 @@ function MeetupDetails({ meetups }: Props) {
     })
   }, [id, meetups])
 
+  const [today, setToday] = useState(new Date())
+  useEffect(() => {
+    setInterval(() => setToday(new Date()), 1000)
+  }, [])
+
+  const date =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate()
+  const time =
+    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+  const timeAndDate = date + ", " + time
+
   const [comment, setComment] = useState<string>("")
   const [rating, setRating] = useState(0)
   const [newComment, setNewComment] = useState<IComment[]>([])
@@ -50,9 +61,10 @@ function MeetupDetails({ meetups }: Props) {
   }
 
   const addComment = (): void => {
-    if (comment !== "" && rating !== 0) {
+    if (comment !== "" || rating !== 0) {
+      console.log(timeAndDate)
       console.log("add comment clicked")
-      const myComment = { message: comment, newRating: rating }
+      const myComment = { message: comment, newRating: rating, timeAndDate }
       setNewComment([...newComment, myComment])
       setComment("")
       setRating(0)
@@ -81,7 +93,7 @@ function MeetupDetails({ meetups }: Props) {
   return (
     <>
       <section>
-        <h3 data-test="meetup-title" className="meetup-data">
+        <h3 test-data="meetup-title" className="meetup-data">
           <span> Title:</span>
           {meetup.title}
         </h3>
@@ -108,7 +120,7 @@ function MeetupDetails({ meetups }: Props) {
           <p className="attending">You are attending this meetup &#9989;</p>
         ) : null}
         {!showSignup && !attending === true ? (
-          <button data-test="sign-up-btn" onClick={signUp}>
+          <button test-data="sign-up-btn" onClick={signUp}>
             Sign up for event
           </button>
         ) : null}
@@ -118,23 +130,24 @@ function MeetupDetails({ meetups }: Props) {
           {/* Add comment or question: */}
           <textarea
             className="comment-input"
-            data-test="textfield"
+            test-data="textfield"
             value={comment}
             onChange={(event) => setComment(event.target.value)}
           ></textarea>
           <p>
             <Rating
-              data-test="rating-stars"
+              test-data="rating"
               onClick={handleRating}
               ratingValue={rating}
               size={25}
+              showTooltip
             />
           </p>
         </div>
         <div className="add-comment-btn">
           <button
             className="add-comment-btn"
-            data-test="addCommentBtn"
+            test-data="addCommentBtn"
             onClick={addComment}
           >
             Add comment
@@ -143,11 +156,7 @@ function MeetupDetails({ meetups }: Props) {
       </section>
       <div className="commentsArea">
         {newComment.map((comment: IComment, key: number) => {
-          return (
-            <div className="comments">
-              <MeetupComments key={key} comment={comment} />
-            </div>
-          )
+          return <MeetupComments key={key} comment={comment} />
         })}
       </div>
     </>

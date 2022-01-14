@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  white-space: wrap;
 }
 body {
   background-color: #eddcd9;
@@ -44,9 +45,11 @@ a {
   text-decoration: none;
   color: #4c69e9;
 }
+
 span {
   font-weight: bold;
   margin-right: 5px;
+  margin-left: 5px;
 }
 input .comment-input {
   margin-bottom: 2em;
@@ -74,6 +77,12 @@ button {
 }
 .attending {
   color: blue;
+}
+.comments {
+  margin-left: 20%;
+  margin-right: 20%;
+  text-align: left;
+  word-break: break-all;
 }
 
 @keyframes App-logo-spin {

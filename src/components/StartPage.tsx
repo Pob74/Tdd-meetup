@@ -71,20 +71,20 @@ function StartPage({ meetups }: Props) {
         setLocation={setLocation}
       />
       {sortedMeetups.map((meetups) => (
-        <div key={meetups.id} data-test="result-meetup">
+        <div key={meetups.id} test-data="result-meetup">
           <section>
-            <h3 data-test="meetup-title">Title: {meetups.title}</h3>
-            <p data-test="meetup-description">
+            <h3 test-data="meetup-title">Title: {meetups.title}</h3>
+            <p test-data="meetup-description">
               <span>Description:</span> {meetups.description}
             </p>
-            <p data-test="meetup-location">
+            <p test-data="meetup-location">
               <span>Location:</span> {meetups.location}
             </p>
-            <p data-test="meetup-time-date">
+            <p test-data="meetup-time-date">
               <span> Time:</span>
               {meetups.time} Date: {meetups.date}
             </p>
-            <Link data-test="Show-MeetupDetails" to={`/meetup/${meetups.id}`}>
+            <Link test-data="Show-MeetupDetails" to={`/meetup/${meetups.id}`}>
               Show more
             </Link>
           </section>

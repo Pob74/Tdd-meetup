@@ -14,7 +14,7 @@ const meetupData = [
 ]
 
 const comment = "Hello, here comes a test comment"
-
+const rating = 5
 const mockAddComment = jest.fn()
 
 describe("Tests for MeetupDetails", () => {
@@ -25,26 +25,45 @@ describe("Tests for MeetupDetails", () => {
     const wrapper = shallow(
       <MeetupDetails meetups={meetupData} myName="" myEmail="" />
     )
-    expect(wrapper.find('button[data-test="sign-up-btn"]').length).toBe(1)
+    expect(wrapper.find('button[test-data="sign-up-btn"]').length).toBe(1)
   })
   test("Meetupcard renders a textarea", () => {
     const wrapper = shallow(
       <MeetupDetails meetups={meetupData} myName="" myEmail="" />
     )
-    expect(wrapper.find('[data-test="textfield"]').length).toBe(1)
+    expect(wrapper.find('[test-data="textfield"]').length).toBe(1)
   })
   test("Renders a button to add a comment", () => {
     const wrapper = shallow(
       <MeetupDetails meetups={meetupData} myName="" myEmail="" />
     )
-    expect(wrapper.find('button[data-test="addCommentBtn"]').length).toBe(1)
+    expect(wrapper.find('button[test-data="addCommentBtn"]').length).toBe(1)
+  })
+  test("Renders a rating element for rating", () => {
+    const wrapper = shallow(
+      <MeetupDetails meetups={meetupData} myName="" myEmail="" />
+    )
+    expect(wrapper.find('[test-data="rating"]').length).toBe(1)
+  })
+
+  test("Should add rating star even when comment is empty", () => {
+    const wrapper = mount(
+      <MeetupDetails meetups={meetupData} myName="" myEmail="" />
+    )
+    const btn = wrapper.find('button[test-data="addCommentBtn"]')
+
+    btn.simulate("click")
+    setTimeout(() => {
+      expect(mockAddComment.mock.calls.length).toBe(1)
+      expect(mockAddComment.mock.calls[0][0]).toEqual(rating)
+    }, 1000)
   })
 
   test("Should add 1 comment when Click on add button", () => {
     const wrapper = mount(
       <MeetupDetails meetups={meetupData} myName="" myEmail="" />
     )
-    const btn = wrapper.find('button[data-test="addCommentBtn"]')
+    const btn = wrapper.find('button[test-data="addCommentBtn"]')
 
     btn.simulate("click")
     setTimeout(() => {

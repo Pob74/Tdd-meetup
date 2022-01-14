@@ -47,7 +47,7 @@ describe("Meetup tests", () => {
     const input = wrapper.find(".search-input")
     input.simulate("change", { target: { value: searchString } })
 
-    const cards = wrapper.find('div[data-test="result-meetup"]')
+    const cards = wrapper.find('div[test-data="result-meetup"]')
     const titles = cards.find("h3")
     expect(titles.length).toBe(1)
     titles.forEach((title) => {
@@ -69,7 +69,7 @@ describe("Meetup tests", () => {
     )
 
     expect(
-      wrapper.find('h3[data-test="meetup-title"]').length
+      wrapper.find('h3[test-data="meetup-title"]').length
     ).not.toBeLessThan(1)
   })
   test("Renders a p element for meetup description", () => {
@@ -85,7 +85,7 @@ describe("Meetup tests", () => {
     )
 
     expect(
-      wrapper.find('p[data-test="meetup-description"]').length
+      wrapper.find('p[test-data="meetup-description"]').length
     ).not.toBeLessThan(1)
   })
   test("Renders a p element for meetup location", () => {
@@ -101,7 +101,7 @@ describe("Meetup tests", () => {
     )
 
     expect(
-      wrapper.find('p[data-test="meetup-location"]').length
+      wrapper.find('p[test-data="meetup-location"]').length
     ).not.toBeLessThan(1)
   })
   test("Renders a p element for meetup time and date", () => {
@@ -117,7 +117,7 @@ describe("Meetup tests", () => {
     )
 
     expect(
-      wrapper.find('p[data-test="meetup-time-date"]').length
+      wrapper.find('p[test-data="meetup-time-date"]').length
     ).not.toBeLessThan(1)
   })
   test('Check if link "Show more" exists', () => {
@@ -154,7 +154,7 @@ describe("Meetup tests", () => {
       </BrowserRouter>
     )
     setTimeout(() => {
-      expect(wrapper.find('Link[data-test="Show-MeetupDetails"]').length).toBe(
+      expect(wrapper.find('Link[test-data="Show-MeetupDetails"]').length).toBe(
         1
       )
     }, 1000)
