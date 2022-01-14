@@ -4,6 +4,7 @@ import { Meetups } from "../models/meetups"
 import { IComment } from "../models/comments"
 import MeetupComments from "../components/MeetupComments"
 import SignUpMeetup from "../components/SignUpMeetup"
+import { Rating } from "react-simple-star-rating"
 
 interface Props {
   meetups: Meetups[]
@@ -41,20 +42,25 @@ function MeetupDetails({ meetups }: Props) {
   }, [id, meetups])
 
   const [comment, setComment] = useState<string>("")
-
+  const [rating, setRating] = useState(0)
   const [newComment, setNewComment] = useState<IComment[]>([])
 
+  const handleRating = (rate: number) => {
+    setRating(rate)
+  }
+
   const addComment = (): void => {
-    console.log("add comment clicked")
-    const myComment = { message: comment }
-    setNewComment([...newComment, myComment])
-    setComment("")
+    if (comment !== "" && rating !== 0) {
+      console.log("add comment clicked")
+      const myComment = { message: comment, newRating: rating }
+      setNewComment([...newComment, myComment])
+      setComment("")
+      setRating(0)
+    }
   }
 
   const [attending, setAttending] = useState(false)
-
   const [showSignup, setShowSignup] = useState(false)
-
   const [signupName, setSignupName] = useState("")
   const [signupEmail, setSignupEmail] = useState("")
 
@@ -101,7 +107,7 @@ function MeetupDetails({ meetups }: Props) {
         {attending === true ? (
           <p className="attending">You are attending this meetup &#9989;</p>
         ) : null}
-        {!showSignup ? (
+        {!showSignup && !attending === true ? (
           <button data-test="sign-up-btn" onClick={signUp}>
             Sign up for event
           </button>
@@ -116,6 +122,14 @@ function MeetupDetails({ meetups }: Props) {
             value={comment}
             onChange={(event) => setComment(event.target.value)}
           ></textarea>
+          <p>
+            <Rating
+              data-test="rating-stars"
+              onClick={handleRating}
+              ratingValue={rating}
+              size={25}
+            />
+          </p>
         </div>
         <div className="add-comment-btn">
           <button
