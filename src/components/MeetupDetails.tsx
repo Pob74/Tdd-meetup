@@ -1,7 +1,7 @@
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Meetups } from "../models/meetups"
-import { IComment } from "../models/comments"
+
 import MeetupComments from "../components/MeetupComments"
 import SignUpMeetup from "../components/SignUpMeetup"
 import { Rating } from "react-simple-star-rating"
@@ -12,7 +12,7 @@ interface Props {
   myEmail: string
 }
 
-function MeetupDetails({ meetups }: Props) {
+function MeetupDetails(props: Props) {
   const { id } = useParams()
 
   const [meetup, setMeetup] = useState({
@@ -21,11 +21,19 @@ function MeetupDetails({ meetups }: Props) {
     description: "",
     location: "",
     time: "",
-    date: ""
+    date: "",
+    comments: [
+      {
+        message: "",
+        timeAndDate: "",
+        newRating: 0
+      }
+    ],
+    attending: 0
   })
 
   useEffect(() => {
-    meetups.map((meetup) => {
+    props.meetups.map((meetup) => {
       if (meetup.id.toString() === id) {
         const meeting = {
           id: meetup.id,
@@ -33,13 +41,15 @@ function MeetupDetails({ meetups }: Props) {
           description: meetup.description,
           location: meetup.location,
           time: meetup.time,
-          date: meetup.date
+          date: meetup.date,
+          comments: meetup.comments,
+          attending: meetup.attending
         }
         return setMeetup(meeting)
       }
       return "No Meetups found"
     })
-  }, [id, meetups])
+  }, [id, props.meetups])
 
   const [today, setToday] = useState(new Date())
   useEffect(() => {
@@ -54,7 +64,6 @@ function MeetupDetails({ meetups }: Props) {
 
   const [comment, setComment] = useState<string>("")
   const [rating, setRating] = useState(0)
-  const [newComment, setNewComment] = useState<IComment[]>([])
 
   const handleRating = (rate: number) => {
     setRating(rate)
@@ -65,7 +74,11 @@ function MeetupDetails({ meetups }: Props) {
       console.log(timeAndDate)
       console.log("add comment clicked")
       const myComment = { message: comment, newRating: rating, timeAndDate }
-      setNewComment([...newComment, myComment])
+      const id = meetup.id
+      const index = props.meetups.findIndex((item) => item.id === id)
+      props.meetups[index].comments.push(myComment)
+      localStorage.setItem("meetups", JSON.stringify(props.meetups))
+
       setComment("")
       setRating(0)
     }
@@ -81,11 +94,19 @@ function MeetupDetails({ meetups }: Props) {
   }
   const hideSignUp = (): void => {
     if (signupName.match(/[a-z0-9]/) && signupEmail.match(/[@]/)) {
+      const id = meetup.id
+      const index = props.meetups.findIndex((item) => item.id === id)
+      let attend = props.meetups[index].attending
+      attend++
+      props.meetups[index].attending = attend
+      localStorage.setItem("meetups", JSON.stringify(props.meetups))
+
       setShowSignup(false)
       // alert("You are attending the event")
       setAttending(true)
       setSignupName("")
       setSignupEmail("")
+
       return
     }
   }
@@ -93,6 +114,9 @@ function MeetupDetails({ meetups }: Props) {
   return (
     <>
       <section>
+        <Link test-data="BackLink" to={"/"}>
+          Back
+        </Link>
         <h3 test-data="meetup-title" className="meetup-data">
           <span> Title:</span>
           {meetup.title}
@@ -124,6 +148,8 @@ function MeetupDetails({ meetups }: Props) {
             Sign up for event
           </button>
         ) : null}
+
+        <p>Attending this event: {meetup.attending}</p>
       </section>
       <section>
         <div className="add-comment-input">
@@ -155,8 +181,8 @@ function MeetupDetails({ meetups }: Props) {
         </div>
       </section>
       <div className="commentsArea">
-        {newComment.map((comment: IComment, key: number) => {
-          return <MeetupComments key={key} comment={comment} />
+        {meetup.comments.map((comment) => {
+          return <MeetupComments key={comment.timeAndDate} comment={comment} />
         })}
       </div>
     </>

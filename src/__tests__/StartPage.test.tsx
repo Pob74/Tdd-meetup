@@ -10,7 +10,9 @@ const meetupData = [
     description: "lets talk about Rolex",
     date: "2022-01-22",
     time: "19:00",
-    location: "Rolex forum"
+    location: "Rolex forum",
+    comments: [],
+    attending: 0
   }
 ]
 
@@ -20,11 +22,11 @@ describe("Meetup tests", () => {
       <BrowserRouter>
         <StartPage
           meetups={meetupData}
-          title=""
-          description=""
-          date=""
-          time=""
-          location=""
+          // title=""
+          // description=""
+          // date=""
+          // time=""
+          // location=""
         />
       </BrowserRouter>
     )
@@ -34,11 +36,11 @@ describe("Meetup tests", () => {
       <BrowserRouter>
         <StartPage
           meetups={meetupData}
-          title=""
-          description=""
-          date=""
-          time=""
-          location=""
+          // title=""
+          // description=""
+          // date=""
+          // time=""
+          // location=""
         />
       </BrowserRouter>
     )
@@ -60,11 +62,11 @@ describe("Meetup tests", () => {
     const wrapper = shallow(
       <StartPage
         meetups={meetupData}
-        title=""
-        description=""
-        date=""
-        time=""
-        location=""
+        // title=""
+        // description=""
+        // date=""
+        // time=""
+        // location=""
       />
     )
 
@@ -76,11 +78,11 @@ describe("Meetup tests", () => {
     const wrapper = shallow(
       <StartPage
         meetups={meetupData}
-        title=""
-        description=""
-        date=""
-        time=""
-        location=""
+        // title=""
+        // description=""
+        // date=""
+        // time=""
+        // location=""
       />
     )
 
@@ -92,11 +94,11 @@ describe("Meetup tests", () => {
     const wrapper = shallow(
       <StartPage
         meetups={meetupData}
-        title=""
-        description=""
-        date=""
-        time=""
-        location=""
+        // title=""
+        // description=""
+        // date=""
+        // time=""
+        // location=""
       />
     )
 
@@ -108,11 +110,11 @@ describe("Meetup tests", () => {
     const wrapper = shallow(
       <StartPage
         meetups={meetupData}
-        title=""
-        description=""
-        date=""
-        time=""
-        location=""
+        // title=""
+        // description=""
+        // date=""
+        // time=""
+        // location=""
       />
     )
 
@@ -125,11 +127,11 @@ describe("Meetup tests", () => {
       <BrowserRouter>
         <StartPage
           meetups={meetupData}
-          title=""
-          description=""
-          date=""
-          time=""
-          location=""
+          // title=""
+          // description=""
+          // date=""
+          // time=""
+          // location=""
         />
       </BrowserRouter>
     )
@@ -145,11 +147,11 @@ describe("Meetup tests", () => {
       <BrowserRouter>
         <StartPage
           meetups={meetupData}
-          title=""
-          description=""
-          date=""
-          time=""
-          location=""
+          // title=""
+          // description=""
+          // date=""
+          // time=""
+          // location=""
         />
       </BrowserRouter>
     )
@@ -165,11 +167,11 @@ describe("Meetup tests", () => {
       <BrowserRouter>
         <StartPage
           meetups={meetupData}
-          title=""
-          description=""
-          date=""
-          time=""
-          location=""
+          // title=""
+          // description=""
+          // date=""
+          // time=""
+          // location=""
         />
       </BrowserRouter>
     )

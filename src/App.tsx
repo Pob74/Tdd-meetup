@@ -3,8 +3,24 @@ import { watchData } from "./data/watchData"
 import "./App.css"
 import StartPage from "./components/StartPage"
 import MeetupDetails from "./components/MeetupDetails"
+import { useState, useEffect } from "react"
 
 function App() {
+  const [meetups, setMeetups] = useState(
+    localStorage.getItem("meetups") != null
+      ? localStorage.getItem("meetups")
+      : "[{}]"
+  )
+
+  useEffect(() => {
+    if (!localStorage.getItem("meetups")) {
+      localStorage.setItem("meetups", JSON.stringify(watchData))
+      setMeetups(localStorage.getItem("meetups"))
+    } else if (localStorage.getItem("meetups")) {
+      setMeetups(localStorage.getItem("meetups"))
+    }
+  }, [meetups])
+
   return (
     <div className="App">
       <Router>
@@ -15,24 +31,29 @@ function App() {
         </>
         <section className="main-content">
           <Routes>
-            <Route
-              path="/"
-              element={
-                <StartPage
-                  meetups={watchData}
-                  title=""
-                  description=""
-                  date=""
-                  time=""
-                  location=""
-                />
-              }
-            ></Route>
-
+            {localStorage.getItem("meetups") && (
+              <Route
+                path="/"
+                element={
+                  <StartPage
+                    meetups={JSON.parse(meetups || "")}
+                    // location=""
+                    // title=""
+                    // description=""
+                    // date=""
+                    // time=""
+                  />
+                }
+              ></Route>
+            )}
             <Route
               path="/meetup/:id"
               element={
-                <MeetupDetails meetups={watchData} myName="" myEmail="" />
+                <MeetupDetails
+                  meetups={JSON.parse(meetups || "")}
+                  myName=""
+                  myEmail=""
+                />
               }
             ></Route>
           </Routes>

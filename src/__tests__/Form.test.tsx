@@ -19,6 +19,10 @@ describe("Form component", () => {
         setTime={() => {}}
         location=""
         setLocation={() => {}}
+        comment={[]}
+        setComment={(comment: Array<any>) => {}}
+        attend={0}
+        setAttend={() => {}}
       />
     )
   })
@@ -38,6 +42,10 @@ describe("Form component", () => {
         setTime={() => {}}
         location=""
         setLocation={() => {}}
+        comment={[]}
+        setComment={(comment: Array<any>) => {}}
+        attend={0}
+        setAttend={() => {}}
       />
     )
     const testMeetup: Meetups = {
@@ -46,7 +54,9 @@ describe("Form component", () => {
       description: "something else",
       date: "2021-02-02",
       time: "13:00",
-      location: "somewhere"
+      location: "somewhere",
+      comments: [],
+      attending: 0
     }
     const titleElement = wrapper.find('[test-data="title"] input')
     titleElement.simulate("change", { target: { value: testMeetup.title } })
@@ -98,6 +108,10 @@ describe("Form component", () => {
           setTime={() => {}}
           location=""
           setLocation={() => {}}
+          comment={[]}
+          setComment={(comment: Array<any>) => {}}
+          attend={0}
+          setAttend={() => {}}
         />
       </BrowserRouter>
     )
@@ -119,6 +133,10 @@ describe("Form component", () => {
           setTime={() => {}}
           location=""
           setLocation={() => {}}
+          comment={[]}
+          setComment={(comment: Array<any>) => {}}
+          attend={0}
+          setAttend={() => {}}
         />
       </BrowserRouter>
     )
@@ -140,6 +158,10 @@ describe("Form component", () => {
           setTime={() => {}}
           location=""
           setLocation={() => {}}
+          comment={[]}
+          setComment={(comment: Array<any>) => {}}
+          attend={0}
+          setAttend={() => {}}
         />
       </BrowserRouter>
     )
@@ -161,6 +183,10 @@ describe("Form component", () => {
           setTime={() => {}}
           location=""
           setLocation={() => {}}
+          comment={[]}
+          setComment={(comment: Array<any>) => {}}
+          attend={0}
+          setAttend={() => {}}
         />
       </BrowserRouter>
     )
@@ -182,6 +208,10 @@ describe("Form component", () => {
           setTime={() => {}}
           location=""
           setLocation={() => {}}
+          comment={[]}
+          setComment={(comment: Array<any>) => {}}
+          attend={0}
+          setAttend={() => {}}
         />
       </BrowserRouter>
     )
@@ -203,6 +233,10 @@ describe("Form component", () => {
           setTime={() => {}}
           location=""
           setLocation={() => {}}
+          comment={[]}
+          setComment={(comment: Array<any>) => {}}
+          attend={0}
+          setAttend={() => {}}
         />
       </BrowserRouter>
     )

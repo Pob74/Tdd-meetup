@@ -1,6 +1,6 @@
 import { mount } from "enzyme"
 import MeetupDetails from "../components/MeetupDetails"
-
+import { BrowserRouter } from "react-router-dom"
 const meetupsData = [
   {
     id: "1",
@@ -8,14 +8,18 @@ const meetupsData = [
     description: "lets talk about rolex",
     date: "2022-01-22",
     time: "19:00",
-    location: "Rolex forum"
+    location: "Rolex forum",
+    comments: [],
+    attending: 0
   }
 ]
 
 describe("Tests for signing up on meetups", () => {
   test("Should contain a form element", () => {
     const wrapper = mount(
-      <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
+      <BrowserRouter>
+        <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
+      </BrowserRouter>
     )
 
     const btn = wrapper.find('button[test-data="sign-up-btn"]')
@@ -28,7 +32,9 @@ describe("Tests for signing up on meetups", () => {
   })
   test("should render a input field for type in your name", () => {
     const wrapper = mount(
-      <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
+      <BrowserRouter>
+        <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
+      </BrowserRouter>
     )
 
     const btn = wrapper.find('button[test-data="sign-up-btn"]')
@@ -41,7 +47,9 @@ describe("Tests for signing up on meetups", () => {
   })
   test("should render a input field for type in your email", () => {
     const wrapper = mount(
-      <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
+      <BrowserRouter>
+        <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
+      </BrowserRouter>
     )
 
     const btn = wrapper.find('button[test-data="sign-up-btn"]')
@@ -54,7 +62,9 @@ describe("Tests for signing up on meetups", () => {
   })
   test("Should render commit button", () => {
     const wrapper = mount(
-      <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
+      <BrowserRouter>
+        <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
+      </BrowserRouter>
     )
 
     const btn = wrapper.find('button[test-data="sign-up-btn"]')
@@ -71,7 +81,9 @@ describe("Tests for signing up on meetups", () => {
     const wrongEmail = "test.com"
 
     const wrapper = mount(
-      <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
+      <BrowserRouter>
+        <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
+      </BrowserRouter>
     )
 
     const btn = wrapper.find('button[test-data="sign-up-btn"]')
@@ -95,7 +107,9 @@ describe("Tests for signing up on meetups", () => {
 
     const wrongName = "u"
     const wrapper = mount(
-      <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
+      <BrowserRouter>
+        <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
+      </BrowserRouter>
     )
 
     const btn = wrapper.find('button[test-data="sign-up-btn"]')
@@ -119,7 +133,9 @@ describe("Tests for signing up on meetups", () => {
     const correctEmail = "test@test.com"
 
     const wrapper = mount(
-      <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
+      <BrowserRouter>
+        <MeetupDetails meetups={meetupsData} myName="" myEmail="" />
+      </BrowserRouter>
     )
 
     const btn = wrapper.find('button[test-data="sign-up-btn"]')

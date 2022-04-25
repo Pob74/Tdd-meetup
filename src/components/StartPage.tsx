@@ -1,30 +1,51 @@
 import { Meetups } from "../models/meetups"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Search from "./Search"
 import { Link } from "react-router-dom"
 import Form from "./NewMeetup/Form"
-import { watchData } from "../data/watchData"
+//import { watchData } from "../data/watchData"
 import nextId from "react-id-generator"
+import { IComment } from "../models/comments"
+import React from "react"
+import storage from "../services/storage"
 
 interface Props {
   meetups: Meetups[]
-  title: string
-  description: string
-  date: string
-  time: string
-  location: string
+
+  // title: string
+  // description: string
+  // date: string
+  // time: string
+  // location: string
 }
 
-function StartPage({ meetups }: Props) {
+function StartPage(props: Props) {
+  // const [meetUps, setmeetUps] = useState<Meetups[]>()
+
+  // useEffect(() => {
+  //   if (meetUps == null) setmeetUps(storage.getMeetups())
+  // }, [meetUps])
+
   const myid = nextId()
-  const [title, setTitle] = useState("")
+  const [title, setTitle] = useState<string>("")
   const [description, setDescription] = useState("")
   const [date, setDate] = useState("")
   const [time, setTime] = useState("")
   const [location, setLocation] = useState("")
+  const [comment, setComment] = useState<IComment[]>([])
+  const [attend, setAttend] = useState<number>(0)
 
   const [searchText, setSearchText] = useState("")
-  const [meetup, setMeetup] = useState<Meetups[]>(watchData)
+  const [meetup, setMeetup] = useState(props.meetups)
+
+  useEffect(() => {
+    let meetups = props.meetups.filter((item: any) =>
+      item.title.match(new RegExp(searchText, "i"))
+    )
+
+    const sortedMeetups = meetups.sort((a, b) => a.date.localeCompare(b.date))
+    setMeetup(sortedMeetups)
+  }, [searchText, props.meetups])
 
   const addMeetup = (): void => {
     const m = {
@@ -33,7 +54,9 @@ function StartPage({ meetups }: Props) {
       description: description,
       date: date,
       time: time,
-      location: location
+      location: location,
+      comments: [],
+      attending: 0
     }
     if (
       title !== "" &&
@@ -42,8 +65,11 @@ function StartPage({ meetups }: Props) {
       time !== "" &&
       location !== ""
     ) {
-      setMeetup([...meetup, m])
+      props.meetups.push(m)
+      localStorage.setItem("meetups", JSON.stringify(props.meetups))
     }
+
+    window.location.reload()
   }
 
   const filteredMeetups = meetup.filter((meetup) =>
@@ -57,6 +83,7 @@ function StartPage({ meetups }: Props) {
   return (
     <>
       <Search searchValue={searchText} setSearchValue={setSearchText} />
+
       <Form
         onClick={addMeetup}
         title={title}
@@ -69,6 +96,10 @@ function StartPage({ meetups }: Props) {
         setTime={setTime}
         location={location}
         setLocation={setLocation}
+        comment={comment}
+        setComment={setComment}
+        attend={attend}
+        setAttend={setAttend}
       />
       {sortedMeetups.map((meetups) => (
         <div key={meetups.id} test-data="result-meetup">
@@ -84,6 +115,8 @@ function StartPage({ meetups }: Props) {
               <span> Time:</span>
               {meetups.time} Date: {meetups.date}
             </p>
+            {/* <p>Attending this event: {meetups.attending}</p> */}
+
             <Link test-data="Show-MeetupDetails" to={`/meetup/${meetups.id}`}>
               Show more
             </Link>

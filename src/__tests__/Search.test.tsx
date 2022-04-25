@@ -9,7 +9,9 @@ const meetupData = [
     description: "lets talk about rolex",
     date: "2021-01-22",
     time: "19:00",
-    location: "Rolex forum"
+    location: "Rolex forum",
+    comments: [],
+    attending: 0
   }
 ]
 
@@ -19,11 +21,11 @@ describe("tests for search on meetups", () => {
       <BrowserRouter>
         <StartPage
           meetups={meetupData}
-          title=""
-          description=""
-          date=""
-          time=""
-          location=""
+          // title=""
+          // description=""
+          // date=""
+          // time=""
+          // location=""
         />
       </BrowserRouter>
     )
@@ -38,11 +40,11 @@ describe("tests for search on meetups", () => {
       <BrowserRouter>
         <StartPage
           meetups={meetupData}
-          title=""
-          description=""
-          date=""
-          time=""
-          location=""
+          // title=""
+          // description=""
+          // date=""
+          // time=""
+          // location=""
         />
       </BrowserRouter>
     )

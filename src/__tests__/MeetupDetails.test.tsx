@@ -1,6 +1,8 @@
 import { render } from "@testing-library/react"
 import { shallow, mount } from "enzyme"
 import MeetupDetails from "../components/MeetupDetails"
+//import { watchData } from "../data/watchData"
+import { BrowserRouter } from "react-router-dom"
 
 const meetupData = [
   {
@@ -9,7 +11,9 @@ const meetupData = [
     description: " lets talk about Rolex",
     date: "2021-01-22",
     time: "19:00",
-    location: "Rolex forum"
+    location: "Rolex forum",
+    comments: [],
+    attending: 0
   }
 ]
 
@@ -19,7 +23,11 @@ const mockAddComment = jest.fn()
 
 describe("Tests for MeetupDetails", () => {
   test("Renders meetups component", () => {
-    render(<MeetupDetails meetups={meetupData} myName="" myEmail="" />)
+    render(
+      <BrowserRouter>
+        <MeetupDetails meetups={meetupData} myName="" myEmail="" />
+      </BrowserRouter>
+    )
   })
   test("Renders sign up button", () => {
     const wrapper = shallow(
@@ -48,7 +56,9 @@ describe("Tests for MeetupDetails", () => {
 
   test("Should add rating star even when comment is empty", () => {
     const wrapper = mount(
-      <MeetupDetails meetups={meetupData} myName="" myEmail="" />
+      <BrowserRouter>
+        <MeetupDetails meetups={meetupData} myName="" myEmail="" />
+      </BrowserRouter>
     )
     const btn = wrapper.find('button[test-data="addCommentBtn"]')
 
@@ -61,7 +71,9 @@ describe("Tests for MeetupDetails", () => {
 
   test("Should add 1 comment when Click on add button", () => {
     const wrapper = mount(
-      <MeetupDetails meetups={meetupData} myName="" myEmail="" />
+      <BrowserRouter>
+        <MeetupDetails meetups={meetupData} myName="" myEmail="" />
+      </BrowserRouter>
     )
     const btn = wrapper.find('button[test-data="addCommentBtn"]')
 
