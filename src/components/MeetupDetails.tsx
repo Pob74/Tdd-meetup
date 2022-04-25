@@ -147,7 +147,9 @@ function MeetupDetails(props: Props) {
             <button test-data="sign-up-btn" onClick={signUp}>
               Sign up for event
             </button>
-            <p>Attending this event: {meetup.attending}</p>
+            <p>
+              <span>Attending this event:</span> {meetup.attending}
+            </p>
           </>
         ) : null}
       </section>
