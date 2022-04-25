@@ -3,29 +3,15 @@ import { useState, useEffect } from "react"
 import Search from "./Search"
 import { Link } from "react-router-dom"
 import Form from "./NewMeetup/Form"
-//import { watchData } from "../data/watchData"
 import nextId from "react-id-generator"
 import { IComment } from "../models/comments"
 import React from "react"
-import storage from "../services/storage"
 
 interface Props {
   meetups: Meetups[]
-
-  // title: string
-  // description: string
-  // date: string
-  // time: string
-  // location: string
 }
 
 function StartPage(props: Props) {
-  // const [meetUps, setmeetUps] = useState<Meetups[]>()
-
-  // useEffect(() => {
-  //   if (meetUps == null) setmeetUps(storage.getMeetups())
-  // }, [meetUps])
-
   const myid = nextId()
   const [title, setTitle] = useState<string>("")
   const [description, setDescription] = useState("")

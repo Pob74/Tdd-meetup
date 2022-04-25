@@ -19,14 +19,7 @@ describe("tests for search on meetups", () => {
   test('Search "Rolex", should render 1 meetup', () => {
     const wrapper = mount(
       <BrowserRouter>
-        <StartPage
-          meetups={meetupData}
-          // title=""
-          // description=""
-          // date=""
-          // time=""
-          // location=""
-        />
+        <StartPage meetups={meetupData} />
       </BrowserRouter>
     )
     const searchText = "Rolex"
@@ -38,14 +31,7 @@ describe("tests for search on meetups", () => {
   test('Search "Yoga", should render 0 meetup', () => {
     const wrapper = mount(
       <BrowserRouter>
-        <StartPage
-          meetups={meetupData}
-          // title=""
-          // description=""
-          // date=""
-          // time=""
-          // location=""
-        />
+        <StartPage meetups={meetupData} />
       </BrowserRouter>
     )
     const searchText = "Ap"

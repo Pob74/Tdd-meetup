@@ -52,7 +52,7 @@ const Form = ({
           <label test-data="date">
             <input
               placeholder="Date"
-              type="text"
+              type="date"
               value={date}
               onChange={(event) => setDate(event.target.value)}
             />
@@ -60,7 +60,7 @@ const Form = ({
           <label test-data="time">
             <input
               placeholder="Time"
-              type="text"
+              type="time"
               value={time}
               onChange={(event) => setTime(event.target.value)}
             />

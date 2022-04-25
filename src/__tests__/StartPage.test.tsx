@@ -20,28 +20,14 @@ describe("Meetup tests", () => {
   test("Renders meetups component", () => {
     render(
       <BrowserRouter>
-        <StartPage
-          meetups={meetupData}
-          // title=""
-          // description=""
-          // date=""
-          // time=""
-          // location=""
-        />
+        <StartPage meetups={meetupData} />
       </BrowserRouter>
     )
   })
   it("shows correct meetup when typing in search field", () => {
     const wrapper = mount(
       <BrowserRouter>
-        <StartPage
-          meetups={meetupData}
-          // title=""
-          // description=""
-          // date=""
-          // time=""
-          // location=""
-        />
+        <StartPage meetups={meetupData} />
       </BrowserRouter>
     )
 
@@ -59,64 +45,28 @@ describe("Meetup tests", () => {
   })
 
   test("Renders a h3 element for meetup title", () => {
-    const wrapper = shallow(
-      <StartPage
-        meetups={meetupData}
-        // title=""
-        // description=""
-        // date=""
-        // time=""
-        // location=""
-      />
-    )
+    const wrapper = shallow(<StartPage meetups={meetupData} />)
 
     expect(
       wrapper.find('h3[test-data="meetup-title"]').length
     ).not.toBeLessThan(1)
   })
   test("Renders a p element for meetup description", () => {
-    const wrapper = shallow(
-      <StartPage
-        meetups={meetupData}
-        // title=""
-        // description=""
-        // date=""
-        // time=""
-        // location=""
-      />
-    )
+    const wrapper = shallow(<StartPage meetups={meetupData} />)
 
     expect(
       wrapper.find('p[test-data="meetup-description"]').length
     ).not.toBeLessThan(1)
   })
   test("Renders a p element for meetup location", () => {
-    const wrapper = shallow(
-      <StartPage
-        meetups={meetupData}
-        // title=""
-        // description=""
-        // date=""
-        // time=""
-        // location=""
-      />
-    )
+    const wrapper = shallow(<StartPage meetups={meetupData} />)
 
     expect(
       wrapper.find('p[test-data="meetup-location"]').length
     ).not.toBeLessThan(1)
   })
   test("Renders a p element for meetup time and date", () => {
-    const wrapper = shallow(
-      <StartPage
-        meetups={meetupData}
-        // title=""
-        // description=""
-        // date=""
-        // time=""
-        // location=""
-      />
-    )
+    const wrapper = shallow(<StartPage meetups={meetupData} />)
 
     expect(
       wrapper.find('p[test-data="meetup-time-date"]').length
@@ -125,14 +75,7 @@ describe("Meetup tests", () => {
   test('Check if link "Show more" exists', () => {
     render(
       <BrowserRouter>
-        <StartPage
-          meetups={meetupData}
-          // title=""
-          // description=""
-          // date=""
-          // time=""
-          // location=""
-        />
+        <StartPage meetups={meetupData} />
       </BrowserRouter>
     )
 
@@ -145,14 +88,7 @@ describe("Meetup tests", () => {
   test('Check if link "Show more" is a <Link> element', () => {
     const wrapper = shallow(
       <BrowserRouter>
-        <StartPage
-          meetups={meetupData}
-          // title=""
-          // description=""
-          // date=""
-          // time=""
-          // location=""
-        />
+        <StartPage meetups={meetupData} />
       </BrowserRouter>
     )
     setTimeout(() => {
@@ -165,14 +101,7 @@ describe("Meetup tests", () => {
   test('Should render the meetup title "Rolex talks"', () => {
     render(
       <BrowserRouter>
-        <StartPage
-          meetups={meetupData}
-          // title=""
-          // description=""
-          // date=""
-          // time=""
-          // location=""
-        />
+        <StartPage meetups={meetupData} />
       </BrowserRouter>
     )
     expect(

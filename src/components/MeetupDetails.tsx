@@ -1,7 +1,6 @@
 import { Link, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Meetups } from "../models/meetups"
-
 import MeetupComments from "../components/MeetupComments"
 import SignUpMeetup from "../components/SignUpMeetup"
 import { Rating } from "react-simple-star-rating"
@@ -144,12 +143,13 @@ function MeetupDetails(props: Props) {
           <p className="attending">You are attending this meetup &#9989;</p>
         ) : null}
         {!showSignup && !attending === true ? (
-          <button test-data="sign-up-btn" onClick={signUp}>
-            Sign up for event
-          </button>
+          <>
+            <button test-data="sign-up-btn" onClick={signUp}>
+              Sign up for event
+            </button>
+            <p>Attending this event: {meetup.attending}</p>
+          </>
         ) : null}
-
-        <p>Attending this event: {meetup.attending}</p>
       </section>
       <section>
         <div className="add-comment-input">
