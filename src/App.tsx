@@ -34,16 +34,7 @@ function App() {
             {localStorage.getItem("meetups") && (
               <Route
                 path="/"
-                element={
-                  <StartPage
-                    meetups={JSON.parse(meetups || "")}
-                    // location=""
-                    // title=""
-                    // description=""
-                    // date=""
-                    // time=""
-                  />
-                }
+                element={<StartPage meetups={JSON.parse(meetups || "")} />}
               ></Route>
             )}
             <Route
