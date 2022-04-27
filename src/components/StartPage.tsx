@@ -34,15 +34,15 @@ function StartPage(props: Props) {
   }, [searchText, props.meetups])
 
   const addMeetup = (): void => {
-    const m = {
+    let m = {
       id: myid,
       title: title,
       description: description,
       date: date,
       time: time,
       location: location,
-      comments: [],
-      attending: 0
+      comments: comment,
+      attending: attend
     }
     if (
       title !== "" &&
@@ -52,6 +52,9 @@ function StartPage(props: Props) {
       location !== ""
     ) {
       props.meetups.push(m)
+      setMeetup([...meetup, m])
+      setComment(comment)
+      setAttend(attend)
       localStorage.setItem("meetups", JSON.stringify(props.meetups))
     }
 

@@ -7,9 +7,7 @@ import { useState, useEffect } from "react"
 
 function App() {
   const [meetups, setMeetups] = useState(
-    localStorage.getItem("meetups") != null
-      ? localStorage.getItem("meetups")
-      : "[{}]"
+    localStorage.getItem("meetups") ? localStorage.getItem("meetups") : "[{}]"
   )
 
   useEffect(() => {
