@@ -19,7 +19,7 @@ function StartPage(props: Props) {
   const [time, setTime] = useState("")
   const [location, setLocation] = useState("")
   const [comment, setComment] = useState<IComment[]>([])
-  const [attend, setAttend] = useState<number>(0)
+  const [attend, setAttend] = useState<string[]>([])
 
   const [searchText, setSearchText] = useState("")
   const [meetup, setMeetup] = useState(props.meetups)
@@ -42,7 +42,7 @@ function StartPage(props: Props) {
       time: time,
       location: location,
       comments: comment,
-      attending: attend
+      attending: attend,
     }
     if (
       title !== "" &&

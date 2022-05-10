@@ -12,8 +12,8 @@ interface Props {
   setLocation: (location: string) => void
   comment: Array<any>
   setComment: (comment: Array<any>) => void
-  attend: number
-  setAttend: (attend: number) => void
+  attend: string[]
+  setAttend: (attend: string[]) => void
 }
 
 const Form = ({
@@ -27,7 +27,7 @@ const Form = ({
   time,
   setTime,
   location,
-  setLocation
+  setLocation,
 }: Props) => {
   return (
     <>

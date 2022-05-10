@@ -1,9 +1,10 @@
 import { Link, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { Meetups } from "../models/meetups"
+
 import MeetupComments from "../components/MeetupComments"
-import SignUpMeetup from "../components/SignUpMeetup"
+import { Meetups } from "../models/meetups"
 import { Rating } from "react-simple-star-rating"
+import SignUpMeetup from "../components/SignUpMeetup"
 
 interface Props {
   meetups: Meetups[]
@@ -14,7 +15,7 @@ interface Props {
 function MeetupDetails(props: Props) {
   const { id } = useParams()
 
-  const [meetup, setMeetup] = useState({
+  const [meetup, setMeetup] = useState<Meetups>({
     id: "",
     title: "",
     description: "",
@@ -28,7 +29,7 @@ function MeetupDetails(props: Props) {
         newRating: 0
       }
     ],
-    attending: 0
+    attending: []
   })
 
   useEffect(() => {
@@ -50,6 +51,7 @@ function MeetupDetails(props: Props) {
     })
   }, [id, props.meetups])
 
+  const userID: string = "12345"
   const [today, setToday] = useState(new Date())
   useEffect(() => {
     setInterval(() => setToday(new Date()), 1000)
@@ -95,9 +97,8 @@ function MeetupDetails(props: Props) {
     if (signupName.match(/[a-z0-9]/) && signupEmail.match(/[@]/)) {
       const id = meetup.id
       const index = props.meetups.findIndex((item) => item.id === id)
-      let attend = props.meetups[index].attending
-      attend++
-      props.meetups[index].attending = attend
+      props.meetups[index].attending.push(userID)
+
       localStorage.setItem("meetups", JSON.stringify(props.meetups))
 
       setShowSignup(false)
@@ -109,6 +110,14 @@ function MeetupDetails(props: Props) {
       return
     }
   }
+
+  useEffect(() => {
+    const index = props.meetups.findIndex((item) => item.id === id)
+    if (props.meetups[index].attending.find((id) => id === userID))
+      setAttending(true)
+  }, [id, props.meetups])
+
+  // console.log(JSON.parse(localStorage.getItem("meetups") || "[]"))
 
   return (
     <>
@@ -142,16 +151,20 @@ function MeetupDetails(props: Props) {
         {attending === true ? (
           <p className="attending">You are attending this meetup &#9989;</p>
         ) : null}
-        {!showSignup && !attending === true ? (
+        {!showSignup && !attending && (
           <>
             <button test-data="sign-up-btn" onClick={signUp}>
               Sign up for event
             </button>
+          </>
+        )}
+        {!showSignup && attending && (
+          <>
             <p>
-              <span>Attending this event:</span> {meetup.attending}
+              <span>Attending this event:</span> {meetup.attending.length}
             </p>
           </>
-        ) : null}
+        )}
       </section>
       <section>
         <div className="add-comment-input">
